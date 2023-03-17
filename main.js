@@ -1,10 +1,10 @@
 /**
- * Desafio Complementar: Ordernar um array de objetos
+ * Desafio Complementar: Gerar HTML
  * Turma 44260 Javascript
  * Erica Daikawa
  */
 
-alert("Desafio: Ordernar um array de objetos\nVamos cadastrar uma pessoa");
+alert("Desafio: Gerar HTML\nVamos cadastrar uma pessoa");
 /** declarando o array de objetos */
 const pessoas = [];
 
@@ -49,7 +49,6 @@ const novoRegistro = () => {
   }
 };
 
-let idades = [];
 /**  função que ordena o array de objetos*/
 const ordernarPorIdade = () => {
   /** método sort() no array de objetos */
@@ -67,34 +66,21 @@ const ordernarPorIdade = () => {
     "mostra array de objetos ordernado\nda pessoa mais velha para a mais nova"
   );
   console.log(maisVelho);
-  /** percorrendo array de objetos ordernado por idade */
-  const arrMaisVelho = [];
-  for (const velho of maisVelho) {
-    arrMaisVelho.push(velho.username);
-    arrMaisVelho.push(velho.age);
-  }
-  idades = arrMaisVelho.join(", ");
-};
 
-let nomes = [];
-/** função que cria um array apenas com os nomes */
-const mostrarNomes = () => {
-  /** array de nomes */
-  const arrayNomes = [];
-  /** percorrendo o array de objetos */
-  for (const pessoa of pessoas) {
-    arrayNomes.push(pessoa.username);
+  /** percorrendo array de objetos ordenado por idade que gera uma seção no HTML */
+  let pai = document.getElementById("pessoas");
+
+  for (const velho of maisVelho) {
+    let li = document.createElement("li");
+    li.innerHTML = `pessoa: ${velho.username}, data de nasc: ${velho.bornDate}, idade: ${velho.age}`;
+    pai.appendChild(li);
   }
-  /** método join no array de nomes */
-  nomes = arrayNomes.join(", ");
 };
 
 /** chamadas das funções */
 registrarPessoa();
 novoRegistro();
 ordernarPorIdade();
-mostrarNomes();
-alert("alunos: " + nomes + "\nalunos do mais velho ao mais novo: " + idades);
 
 /** função: recarregarAPagina */
 const recarregarAPagina = () => {
